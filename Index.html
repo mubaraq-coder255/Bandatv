@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIZO CINEMA</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">FIZO CINEMA</div>
+    </header>
+
+    <div class="filter-menu">
+        <button onclick="filterMovies('All')">All</button>
+        <button onclick="filterMovies('Trending')">Trending</button>
+        <button onclick="filterMovies('Action')">Action</button>
+        <button onclick="filterMovies('Animation')">Animation</button>
+    </div>
+
+    <div class="movie-grid" id="movieGrid"></div>
+
+    <script>
+        let allMovies = [];
+        fetch('movies.json')
+            .then(res => res.json())
+            .then(data => {
+                allMovies = data;
+                renderMovies(allMovies);
+            });
+
+        function renderMovies(movies) {
+            const grid = document.getElementById('movieGrid');
+            grid.innerHTML = "";
+            movies.forEach(movie => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <a href="player.html?id=${movie.id}">
+                            <img src="${movie.image}" alt="${movie.title}">
+                            <h3>${movie.title}</h3>
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        function filterMovies(category) {
+            if(category === 'All') renderMovies(allMovies);
+            else renderMovies(allMovies.filter(m => m.category === category));
+        }
+    </script>
+</body>
+</html>
 
