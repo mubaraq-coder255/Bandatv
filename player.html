@@ -1,36 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
     <meta charset="UTF-8">
-    <title>Watch Movie</title>
-    <link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banda TV - Player</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .player-container { padding: 20px; max-width: 800px; margin: auto; }
+        iframe { width: 100%; height: 450px; border-radius: 10px; border: none; }
+        .details { margin-top: 20px; text-align: left; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: red; text-decoration: none; font-weight: bold; }
+    </style>
 </head>
-<body style="padding: 50px; text-align: center;">
+<body>
 
-    <h1 id="movieTitle">Inapakia...</h1>
-    
-    <div class="video-container">
-        <iframe id="videoPlayer" width="80%" height="500" src="" frameborder="0" allowfullscreen></iframe>
+    <div class="player-container">
+        <a href="index.html" class="back-btn">← Rudi Nyumbani</a>
+        
+        <div id="video-display">
+            </div>
+
+        <div id="movie-details" class="details">
+            </div>
     </div>
 
-    <a href="index.html" style="color: #ff4500; display: block; margin-top: 20px;">Rudi Nyuma</a>
-
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const movieId = params.get('id');
+        // 1. Pata ID ya filamu kutoka kwenye URL (mfano: player.html?id=3)
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id');
 
-        fetch('movies.json')
-            .then(res => res.json())
+        // 2. Tafuta data ya hiyo filamu kwenye movie.json
+        fetch('movie.json')
+            .then(response => response.json())
             .then(data => {
                 const movie = data.find(m => m.id == movieId);
-                if(movie) {
-                    document.getElementById('movieTitle').innerText = movie.title;
-                    document.getElementById('videoPlayer').src = movie.video_url;
+
+                if (movie) {
+                    // 3. Weka video ya YouTube/Server
+                    document.getElementById('video-display').innerHTML = `
+                        <iframe src="${movie.video_url}" allowfullscreen></iframe>
+                    `;
+
+                    // 4. Weka Maelezo
+                    document.getElementById('movie-details').innerHTML = `
+                        <h2>${movie.title}</h2>
+                        <p><strong>Category:</strong> ${movie.category}</p>
+                        <p>${movie.description}</p>
+                        <hr>
+                        <a href="${movie.buy_link}" class="play-btn" style="background: #25D366;">Nunua Filamu WhatsApp</a>
+                    `;
                 } else {
-                    document.getElementById('movieTitle').innerText = "Muvi haipatikani!";
+                    document.getElementById('video-display').innerHTML = "<h3>Filamu haijapatikana!</h3>";
                 }
             });
     </script>
 </body>
 </html>
-
