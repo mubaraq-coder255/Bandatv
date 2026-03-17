@@ -17,13 +17,13 @@
                 const list = document.getElementById('movie-list');
                 data.forEach(movie => {
                     list.innerHTML += `
-                        <div class="movie-card">
-                            <img src="${movie.image}" alt="${movie.title}">
-                            <h3>${movie.title}</h3>
-                            <p>${movie.description}</p>
-                            <a href="${movie.video_url}" target="_blank">Tazama Filamu</a>
-                        </div>
-                    `;
+                  <div class="movie-card">
+                      <img src="${movie.image}" alt="${movie.title}">
+                      <h3>${movie.title}</h3>
+                       <p>${movie.description}</p>
+                      <a href="player.html?id=${movie.id}">Tazama Filamu</a>
+                  </div>
+                  `;
                 });
             })
             .catch(error => console.log('Kuna hitilafu:', error));
