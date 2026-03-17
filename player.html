@@ -3,56 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banda TV - Player</title>
+    <title>Watching - FIZO MOVIES</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .player-container { padding: 20px; max-width: 800px; margin: auto; }
-        iframe { width: 100%; height: 450px; border-radius: 10px; border: none; }
-        .details { margin-top: 20px; text-align: left; }
-        .back-btn { display: inline-block; margin-bottom: 20px; color: red; text-decoration: none; font-weight: bold; }
-    </style>
 </head>
-<body>
+<body class="player-page">
+
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">FIZO<span>MOVIES</span></a>
+        </div>
+    </header>
 
     <div class="player-container">
-        <a href="index.html" class="back-btn">← Rudi Nyumbani</a>
+        <div class="video-wrapper">
+            <iframe id="mainPlayer" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
         
-        <div id="video-display">
+        <div class="video-details">
+            <h1 id="movieTitle">Movie Title</h1>
+            <div class="meta">
+                <span id="movieCategory" class="category-tag">Category</span>
+                <span id="movieStatus">| Imetafsiriwa |</span>
             </div>
-
-        <div id="movie-details" class="details">
-            </div>
+            <p id="movieDescription" class="desc">
+                Maelezo ya filamu yatatokea hapa...
+            </p>
+            <a href="https://wa.me/255749705400" class="btn-buy-large">Nunua Full Movie (WhatsApp)</a>
+        </div>
     </div>
 
     <script>
-        // 1. Pata ID ya filamu kutoka kwenye URL (mfano: player.html?id=3)
-        const urlParams = new URLSearchParams(window.location.search);
-        const movieId = urlParams.get('id');
-
-        // 2. Tafuta data ya hiyo filamu kwenye movie.json
-        fetch('movie.json')
-            .then(response => response.json())
-            .then(data => {
-                const movie = data.find(m => m.id == movieId);
-
-                if (movie) {
-                    // 3. Weka video ya YouTube/Server
-                    document.getElementById('video-display').innerHTML = `
-                        <iframe src="${movie.video_url}" allowfullscreen></iframe>
-                    `;
-
-                    // 4. Weka Maelezo
-                    document.getElementById('movie-details').innerHTML = `
-                        <h2>${movie.title}</h2>
-                        <p><strong>Category:</strong> ${movie.category}</p>
-                        <p>${movie.description}</p>
-                        <hr>
-                        <a href="${movie.buy_link}" class="play-btn" style="background: #25D366;">Nunua Filamu WhatsApp</a>
-                    `;
-                } else {
-                    document.getElementById('video-display').innerHTML = "<h3>Filamu haijapatikana!</h3>";
-                }
-            });
+        // Hapa tungepata ID kutoka kwenye URL na kuchuja data
+        // Kwa mfano wa haraka:
+        document.getElementById('mainPlayer').src = "https://www.youtube.com/embed/NSAOrGb9orM";
     </script>
 </body>
 </html>
