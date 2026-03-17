@@ -208,3 +208,7 @@ nav ul li a:hover, .active {
     }
     nav { display: none; } /* Unaweza kuongeza Mobile Menu hapa baadaye */
 }
+.search-box {
+    margin-left: 20px;
+    /* Ongeza hii kuzuia zisigusane */
+}
