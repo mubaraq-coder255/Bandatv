@@ -2,31 +2,49 @@
 <html lang="sw">
 <head>
     <meta charset="UTF-8">
-    <title>Banda TV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banda TV - Filamu Kali</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Karibu Banda TV</h1>
-    <div id="movie-list" class="grid-container"></div>
+
+    <header>
+        <h1>Karibu Banda TV</h1>
+    </header>
+
+    <div id="movie-list" class="grid-container">
+        </div>
 
     <script>
-        // Hapa ndipo tunaita data kutoka kwenye movies.json
-        fetch('movies.json')
-            .then(response => response.json())
+        // Muhimu: Tunatumia 'movie.json' bila 's' kulingana na faili lako
+        fetch('movie.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Imeshindwa kupata faili la movie.json');
+                }
+                return response.json();
+            })
             .then(data => {
                 const list = document.getElementById('movie-list');
+                list.innerHTML = ''; // Safisha ukurasa kwanza
+
                 data.forEach(movie => {
+                    // Tunatumia Backticks (alama iliyo chini ya Esc) kwa ajili ya ${}
                     list.innerHTML += `
-                  <div class="movie-card">
-                      <img src="${movie.image}" alt="${movie.title}">
-                      <h3>${movie.title}</h3>
-                       <p>${movie.description}</p>
-                      <a href="player.html?id=${movie.id}">Tazama Filamu</a>
-                  </div>
-                  `;
+                        <div class="movie-card">
+                            <img src="${movie.image}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/200x300?text=Picha+Haipo'">
+                            <h3>${movie.title}</h3>
+                            <p class="status">${movie.status}</p>
+                            <a href="player.html?id=${movie.id}" class="play-btn">Tazama Filamu</a>
+                        </div>
+                    `;
                 });
             })
-            .catch(error => console.log('Kuna hitilafu:', error));
+            .catch(error => {
+                console.error('Hitilafu:', error);
+                document.getElementById('movie-list').innerHTML = '<p>Samahani, filamu hazikuweza kupatikana kwa sasa.</p>';
+            });
     </script>
+
 </body>
 </html>
