@@ -3,42 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banda TV - Filamu Kali</title>
+    <title>FIZO MOVIES ONLINE | Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <h1>Karibu Banda TV</h1>
+        <div class="navbar">
+            <div class="logo">FIZO<span>MOVIES</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Animation</a></li>
+                    <li><a href="#">Adult 18+</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Tafuta movie...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
     </header>
 
-    <div id="movie-list" class="grid-container"></div>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Burudani Isiyo na Kikomo</h1>
+                <p>Tazama filamu zilizotafsiriwa kwa Kiswahili bora zaidi hapa.</p>
+            </div>
+        </section>
+
+        <section class="movie-section">
+            <h2 class="section-title">Zilizowekwa Hivi Karibuni</h2>
+            <div class="movie-grid" id="movieGrid">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FIZO MOVIES ONLINE. Haki zote zimehifadhiwa.</p>
+    </footer>
 
     <script>
-        // Hakikisha faili lako linaitwa movie.json au movies.json (badilisha hapa chini ikibidi)
-        fetch('movie.json')
-            .then(response => response.json())
-            .then(data => {
-                const list = document.getElementById('movie-list');
-                let html = ''; 
+        const movies = [ /* Data zako ulizotoa hapa */ ];
+        // Kumbuka kuweka ile list yako ya JSON hapa ndani ya mabano haya []
 
-                data.forEach(movie => {
-                    // Muhimu: Alama hizi za ` ni tofauti na ' (Backticks vs Single Quotes)
-                    html += `
-                        <div class="movie-card">
-                            <img src="${movie.image}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/200x300?text=Picha+Haipo'">
-                            <h3>${movie.title}</h3>
-                            <p class="status">${movie.status}</p>
-                            <a href="player.html?id=${movie.id}" class="play-btn">Tazama Filamu</a>
+        const movieGrid = document.getElementById('movieGrid');
+
+        function displayMovies(data) {
+            movieGrid.innerHTML = data.map(movie => `
+                <div class="movie-card">
+                    <div class="card-img">
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <span class="category-tag">${movie.category}</span>
+                    </div>
+                    <div class="card-info">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.status}</p>
+                        <div class="card-buttons">
+                            <a href="player.html?id=${movie.id}" class="btn-watch">Tazama</a>
+                            <a href="${movie.buy_link}" class="btn-buy"><i class="fab fa-whatsapp"></i> Nunua</a>
                         </div>
-                    `;
-                });
-                list.innerHTML = html;
-            })
-            .catch(error => {
-                console.error('Hitilafu:', error);
-                document.getElementById('movie-list').innerHTML = '<p>Samahani, filamu hazikuweza kupatikana kwa sasa.</p>';
-            });
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Kwa sasa tuweke hizi data zako hapa chini ili zionekane
+        const myMovies = [
+            { id: 1, title: "SISU 2", category: "Action", image: "images/si.JPG", status: "|Imetafsiriwa|" },
+            { id: 2, title: "DAMSEL", category: "Action", image: "images/damsel1.JPG", status: "|Imetafsiriwa|" },
+            { id: 3, title: "SPARTACUS", category: "Adult18+", image: "images/Spartacus1.JPG", status: "|Imetafsiriwa|" },
+            { id: 5, title: "DAVID", category: "Animation", image: "images/david1.JPG", status: "|Imetafsiriwa|" }
+            // Ongeza nyingine hapa...
+        ];
+
+        displayMovies(myMovies);
     </script>
 </body>
 </html>
