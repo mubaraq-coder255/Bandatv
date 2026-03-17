@@ -1,55 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIZO CINEMA</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Banda TV</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <div class="logo">FIZO CINEMA</div>
-    </header>
-
-    <div class="filter-menu">
-        <button onclick="filterMovies('All')">All</button>
-        <button onclick="filterMovies('Trending')">Trending</button>
-        <button onclick="filterMovies('Action')">Action</button>
-        <button onclick="filterMovies('Animation')">Animation</button>
-    </div>
-
-    <div class="movie-grid" id="movieGrid"></div>
+    <h1>Karibu Banda TV</h1>
+    <div id="movie-list" class="grid-container"></div>
 
     <script>
-        let allMovies = [];
+        // Hapa ndipo tunaita data kutoka kwenye movies.json
         fetch('movies.json')
-            .then(res => res.json())
+            .then(response => response.json())
             .then(data => {
-                allMovies = data;
-                renderMovies(allMovies);
-            });
-
-        function renderMovies(movies) {
-            const grid = document.getElementById('movieGrid');
-            grid.innerHTML = "";
-            movies.forEach(movie => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <a href="player.html?id=${movie.id}">
+                const list = document.getElementById('movie-list');
+                data.forEach(movie => {
+                    list.innerHTML += `
+                        <div class="movie-card">
                             <img src="${movie.image}" alt="${movie.title}">
                             <h3>${movie.title}</h3>
-                        </a>
-                    </div>
-                `;
-            });
-        }
-
-        function filterMovies(category) {
-            if(category === 'All') renderMovies(allMovies);
-            else renderMovies(allMovies.filter(m => m.category === category));
-        }
+                            <p>${movie.description}</p>
+                            <a href="${movie.video_url}" target="_blank">Tazama Filamu</a>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => console.log('Kuna hitilafu:', error));
     </script>
 </body>
 </html>
-
