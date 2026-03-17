@@ -210,41 +210,38 @@
         buy_link: "https://wa.me/255749705400" 
     }
         ];
-        displayMovies(myMovies);
-        const movieGrid = document.getElementById('movieGrid');
-    function displayMovies(data) {
-        movieGrid.innerHTML = data.map(movie => `
-            <div class="movie-card">
-                <div class="card-img">
-                    <img src="${movie.image}" alt="${movie.title}">
-                    <span class="category-tag">${movie.category}</span>
-                </div>
-                <div class="card-info">
-                    <h3>${movie.title}</h3>
-                    <p>${movie.status}</p>
-                    <div class="card-buttons">
-                        <a href="player.html?id=${movie.id}" class="btn-watch">Tazama</a>
-                        <a href="${movie.buy_link}" class="btn-buy"><i class="fab fa-whatsapp"></i> Nunua</a>
-                    </div>
+        function displayMovies(data) {
+    movieGrid.innerHTML = data.map(movie => `
+        <div class="movie-card">
+            <div class="card-img">
+                <img src="${movie.image}" alt="${movie.title}">
+                <span class="category-tag">${movie.category}</span>
+            </div>
+            <div class="card-info">
+                <h3>${movie.title}</h3>
+                <p>${movie.status}</p>
+                <div class="card-buttons">
+                    <a href="player.html?id=${movie.id}" class="btn-watch">Tazama</a>
+                    <a href="${movie.buy_link}" class="btn-buy"><i class="fab fa-whatsapp"></i> Nunua</a>
                 </div>
             </div>
-        `).join('');
-    }
+        </div>
+    `).join(''); // Hakikisha alama hii ` ipo hapa kabla ya bano
+}
 
-    // Onyesha movie zote mara ya kwanza
-    displayMovies(myMovies);
+// Onyesha movie zote mara ya kwanza
+displayMovies(myMovies);
 
-    // KODI YA KUSEARCH (Iweke hapa ndani kabla ya kufunga script)
-    const searchInput = document.querySelector('.search-box input');
+// KODI YA KUSEARCH
+const searchInput = document.querySelector('.search-box input');
 
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filteredMovies = myMovies.filter(movie => {
-            return movie.title.toLowerCase().includes(term);
-        });
-        displayMovies(filteredMovies);
+searchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const filteredMovies = myMovies.filter(movie => {
+        return movie.title.toLowerCase().includes(term);
     });
-
-</script> ```
+    displayMovies(filteredMovies);
+});
+</script>
 </body>
 </html>
