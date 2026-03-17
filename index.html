@@ -12,25 +12,19 @@
         <h1>Karibu Banda TV</h1>
     </header>
 
-    <div id="movie-list" class="grid-container">
-        </div>
+    <div id="movie-list" class="grid-container"></div>
 
     <script>
-        // Muhimu: Tunatumia 'movie.json' bila 's' kulingana na faili lako
+        // Tunaita faili lako la movies.json
         fetch('movies.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Imeshindwa kupata faili la movie.json');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 const list = document.getElementById('movie-list');
-                list.innerHTML = ''; // Safisha ukurasa kwanza
+                let html = ''; 
 
                 data.forEach(movie => {
-                    // Tunatumia Backticks (alama iliyo chini ya Esc) kwa ajili ya ${}
-                    list.innerHTML += `
+                    // HAPA NDIPO KIPENGELE MUHIMU: Tunatumia BACKTICKS (alama iliyo chini ya ESC)
+                    html += `
                         <div class="movie-card">
                             <img src="${movie.image}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/200x300?text=Picha+Haipo'">
                             <h3>${movie.title}</h3>
@@ -39,12 +33,12 @@
                         </div>
                     `;
                 });
+                list.innerHTML = html;
             })
             .catch(error => {
                 console.error('Hitilafu:', error);
-                document.getElementById('movie-list').innerHTML = '<p>Samahani, filamu hazikuweza kupatikana kwa sasa.</p>';
+                document.getElementById('movie-list').innerHTML = '<p>Filamu zinapakia... Hakikisha movies.json haina makosa.</p>';
             });
     </script>
-
 </body>
 </html>
