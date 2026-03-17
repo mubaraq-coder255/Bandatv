@@ -15,15 +15,15 @@
     <div id="movie-list" class="grid-container"></div>
 
     <script>
-        // Tunaita faili lako la movies.json
-        fetch('movies.json')
+        // Hakikisha faili lako linaitwa movie.json au movies.json (badilisha hapa chini ikibidi)
+        fetch('movie.json')
             .then(response => response.json())
             .then(data => {
                 const list = document.getElementById('movie-list');
                 let html = ''; 
 
                 data.forEach(movie => {
-                    // HAPA NDIPO KIPENGELE MUHIMU: Tunatumia BACKTICKS (alama iliyo chini ya ESC)
+                    // Muhimu: Alama hizi za ` ni tofauti na ' (Backticks vs Single Quotes)
                     html += `
                         <div class="movie-card">
                             <img src="${movie.image}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/200x300?text=Picha+Haipo'">
@@ -37,7 +37,7 @@
             })
             .catch(error => {
                 console.error('Hitilafu:', error);
-                document.getElementById('movie-list').innerHTML = '<p>Filamu zinapakia... Hakikisha movies.json haina makosa.</p>';
+                document.getElementById('movie-list').innerHTML = '<p>Samahani, filamu hazikuweza kupatikana kwa sasa.</p>';
             });
     </script>
 </body>
