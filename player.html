@@ -3,39 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watching - FIZO MOVIES</title>
+    <title>FIZO MOVIES ONLINE | Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="player-page">
+<body>
 
     <header>
         <div class="navbar">
-            <a href="index.html" class="logo">FIZO<span>MOVIES</span></a>
+            <div class="logo">FIZO<span>MOVIES</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Animation</a></li>
+                    <li><a href="#">Adult 18+</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Tafuta movie...">
+                <i class="fas fa-search"></i>
+            </div>
         </div>
     </header>
 
-    <div class="player-container">
-        <div class="video-wrapper">
-            <iframe id="mainPlayer" src="" frameborder="0" allowfullscreen></iframe>
-        </div>
-        
-        <div class="video-details">
-            <h1 id="movieTitle">Movie Title</h1>
-            <div class="meta">
-                <span id="movieCategory" class="category-tag">Category</span>
-                <span id="movieStatus">| Imetafsiriwa |</span>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Burudani Isiyo na Kikomo</h1>
+                <p>Tazama filamu zilizotafsiriwa kwa Kiswahili bora zaidi hapa.</p>
             </div>
-            <p id="movieDescription" class="desc">
-                Maelezo ya filamu yatatokea hapa...
-            </p>
-            <a href="https://wa.me/255749705400" class="btn-buy-large">Nunua Full Movie (WhatsApp)</a>
-        </div>
-    </div>
+        </section>
+
+        <section class="movie-section">
+            <h2 class="section-title">Zilizowekwa Hivi Karibuni</h2>
+            <div class="movie-grid" id="movieGrid">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FIZO MOVIES ONLINE. Haki zote zimehifadhiwa.</p>
+    </footer>
 
     <script>
-        // Hapa tungepata ID kutoka kwenye URL na kuchuja data
-        // Kwa mfano wa haraka:
-        document.getElementById('mainPlayer').src = "https://www.youtube.com/embed/NSAOrGb9orM";
+        const movies = [ /* Data zako ulizotoa hapa */ ];
+        // Kumbuka kuweka ile list yako ya JSON hapa ndani ya mabano haya []
+
+        const movieGrid = document.getElementById('movieGrid');
+
+        function displayMovies(data) {
+            movieGrid.innerHTML = data.map(movie => `
+                <div class="movie-card">
+                    <div class="card-img">
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <span class="category-tag">${movie.category}</span>
+                    </div>
+                    <div class="card-info">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.status}</p>
+                        <div class="card-buttons">
+                            <a href="player.html?id=${movie.id}" class="btn-watch">Tazama</a>
+                            <a href="${movie.buy_link}" class="btn-buy"><i class="fab fa-whatsapp"></i> Nunua</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Kwa sasa tuweke hizi data zako hapa chini ili zionekane
+        const myMovies = [
+            { id: 1, title: "SISU 2", category: "Action", image: "images/si.JPG", status: "|Imetafsiriwa|" },
+            { id: 2, title: "DAMSEL", category: "Action", image: "images/damsel1.JPG", status: "|Imetafsiriwa|" },
+            { id: 3, title: "SPARTACUS", category: "Adult18+", image: "images/Spartacus1.JPG", status: "|Imetafsiriwa|" },
+            { id: 5, title: "DAVID", category: "Animation", image: "images/david1.JPG", status: "|Imetafsiriwa|" }
+            // Ongeza nyingine hapa...
+        ];
+
+        displayMovies(myMovies);
     </script>
 </body>
 </html>
