@@ -287,4 +287,29 @@ nav ul li a:hover, .active {
     padding: 20px 0;
     scrollbar-width: none; /* Ficha scrollbar */
 }
+ /* Hero Banner */
+.hero-slide {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 40px;
+}
+
+.hero-content h1 { font-size: 3.5rem; color: white; margin-bottom: 10px; }
+.hero-btns { display: flex; gap: 15px; margin-top: 20px; }
+
+.btn-watch { background: white; color: black; padding: 12px 25px; border-radius: 5px; font-weight: bold; text-decoration: none; }
+.btn-buy-full { background: #e50914; color: white; padding: 12px 25px; border-radius: 5px; font-weight: bold; text-decoration: none; }
+
+/* Movie Row Slider */
+.movie-swiper { padding: 20px 0; overflow: hidden; }
+.swiper-button-next, .swiper-button-prev { color: #e50914 !important; scale: 0.7; }
+
+/* Responsive kwa Simu */
+@media (max-width: 768px) {
+    .hero-slide { height: 350px; padding: 30px 20px; }
+    .hero-content h1 { font-size: 2rem; }
+}
     
