@@ -269,6 +269,46 @@ searchInput.addEventListener('input', (e) => {
     });
     displayMovies(filteredMovies);
 });
+    // 1. Washa Hero Slider (Sekunde 1)
+const heroSwiper = new Swiper('.hero-swiper', {
+    loop: true,
+    autoplay: {
+        delay: 1000, // Sekunde 1
+        disableOnInteraction: false,
+    },
+    pagination: { el: '.swiper-pagination', clickable: true },
+});
+
+// 2. Washa Movie Rows
+function initMovieSwiper() {
+    new Swiper('.movie-swiper', {
+        slidesPerView: 2.2, // Movie 2 na nusu kwenye simu
+        spaceBetween: 15,
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: {
+            768: { slidesPerView: 4.5 }, // Movie 4 na nusu kwenye iPad
+            1024: { slidesPerView: 6 }   // Movie 6 kwenye Computer
+        }
+    });
+}
+
+// 3. Hakikisha displayMovies inaita initMovieSwiper
+function displayMovies(data) {
+    const movieGrid = document.getElementById('movieGrid');
+    movieGrid.innerHTML = data.map(movie => `
+        <div class="swiper-slide">
+            <div class="movie-card">
+                <img src="${movie.image}" alt="${movie.title}">
+                <h3>${movie.title}</h3>
+                <a href="${movie.buy_link}" class="btn-buy">NUNUA</a>
+            </div>
+        </div>
+    `).join('');
+    
+    initMovieSwiper(); // Washa slider baada ya kupakia muvi
+}
+
+displayMovies(myMovies);
 </script>
 </body>
 </html>
