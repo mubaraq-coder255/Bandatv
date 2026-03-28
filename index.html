@@ -6,6 +6,8 @@
     <title>FIZO MOVIES ONLINE | Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
 
@@ -29,33 +31,44 @@
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Burudani Isiyo na Kikomo</h1>
-                <p>Tazama filamu zilizotafsiriwa kwa Kiswahili bora zaidi hapa.</p>
-            </div>
-        </section>
-<div class="swiper hero-swiper">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide hero-slide" style="background-image: linear-gradient(to top, #111, transparent), url('images/sisu_banner.JPG');">
-            <div class="hero-info">
-                <h1>SISU 2</h1>
-                <p>Mzee hatari anarudi tena...</p>
-                <div class="hero-btns">
-                    <button class="btn-watch">WATCH NOW</button>
-                    <button class="btn-buy-full">BUY FULL MOVIE</button>
+    <section class="hero-section">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide hero-slide" style="background-image: linear-gradient(to top, #111, transparent), url('images/sisu2.JPG');">
+                    <div class="hero-content">
+                        <h1>SISU 2</h1>
+                        <p>Kimbembe cha mzee hatari kinaendelea...</p>
+                        <div class="hero-btns">
+                            <a href="#" class="btn-watch"><i class="fas fa-play"></i> TAZAMA</a>
+                            <a href="https://wa.me/255749705400" class="btn-buy-full"><i class="fas fa-crown"></i> NUNUA FULL</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide hero-slide" style="background-image: linear-gradient(to top, #111, transparent), url('images/damsel1.JPG');">
+                    <div class="hero-content">
+                        <h1>DAMSEL</h1>
+                        <p>Binti shujaa anapambana na joka...</p>
+                        <div class="hero-btns">
+                            <a href="#" class="btn-watch"><i class="fas fa-play"></i> TAZAMA</a>
+                            <a href="https://wa.me/255749705400" class="btn-buy-full"><i class="fas fa-crown"></i> NUNUA FULL</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
-        </div>
-</div> 
-        <section class="movie-section">
-            <h2 class="section-title">Zilizowekwa Hivi Karibuni</h2>
-            <div class="movie-grid" id="movieGrid">
-                </div>
-        </section>
-    </main>
+    </section>
 
+    <section class="movie-section">
+        <h2 class="section-title">Zilizowekwa Hivi Karibuni</h2>
+        <div class="swiper movie-swiper">
+            <div class="swiper-wrapper" id="movieGrid">
+                </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+</main>
     <footer>
         <p>&copy; 2026 FIZO MOVIES ONLINE. Haki zote zimehifadhiwa.</p>
     </footer>
