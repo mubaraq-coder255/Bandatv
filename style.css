@@ -267,3 +267,24 @@ nav ul li a:hover, .active {
         width: 100%;
         padding: 0;
     }
+/* Muonekano wa Banner ya Juu */
+.hero-slide {
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+}
+
+.hero-info h1 { font-size: 3rem; color: white; margin-bottom: 10px; }
+
+/* Muonekano wa Row za chini */
+.movie-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 20px 0;
+    scrollbar-width: none; /* Ficha scrollbar */
+}
+    
