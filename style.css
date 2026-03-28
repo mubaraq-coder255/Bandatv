@@ -1,315 +1,80 @@
 :root {
-    --primary-color: #e50914; /* Rangi ya Red (Netflix style) */
-    --bg-color: #0f0f0f;
-    --card-bg: #1f1f1f;
-    --text-white: #ffffff;
-    --text-gray: #b3b3b3;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --primary: #e50914;
+    --dark: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --text: #ffffff;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-white);
-    line-height: 1.6;
+    background-color: var(--dark);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 
-/* Navbar */
+/* Header & Search */
 header {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 1rem 5%;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--text-white);
-    text-decoration: none;
-}
-
-.logo span {
-    color: var(--primary-color);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li a {
-    color: var(--text-white);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: 0.3s;
-}
-
-nav ul li a:hover, .active {
-    color: var(--primary-color);
-}
-
-/* Hero Section */
-.hero {
-    height: 40vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(15,15,15,1)), url('https://via.placeholder.com/1200x400');
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Movie Grid */
-.movie-section {
-    padding: 2rem 5%;
-}
-
-.section-title {
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--primary-color);
-    padding-left: 10px;
-}
-
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-}
-
-/* Movie Card */
-.movie-card {
-    background: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-
-.movie-card:hover {
-    transform: translateY(-10px);
-}
-
-.card-img {
-    position: relative;
-    height: 250px;
-}
-
-.card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.category-tag {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--primary-color);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-.card-info {
-    padding: 10px;
-}
-
-.card-info h3 {
-    font-size: 1rem;
-    margin-bottom: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.card-info p {
-    font-size: 0.8rem;
-    color: var(--text-gray);
-    margin-bottom: 10px;
-}
-
-/* Buttons */
-.card-buttons {
-    display: flex;
-    gap: 5px;
-}
-
-.btn-watch, .btn-buy {
-    flex: 1;
-    text-align: center;
-    padding: 8px 0;
-    text-decoration: none;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.btn-watch {
-    background: var(--text-white);
-    color: black;
-}
-
-.btn-buy {
-    background: #25D366; /* WhatsApp Green */
-    color: white;
-}
-
-/* Player Styles */
-.player-container {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 5%;
-}
-
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 ratio */
-    height: 0;
-    margin-bottom: 20px;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-}
-
-.btn-buy-large {
-    display: block;
-    background: #25D366;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .movie-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    }
-    nav { display: none; } /* Unaweza kuongeza Mobile Menu hapa baadaye */
-}
-.search-box {
-    margin-left: 20px;
-    /* Ongeza hii kuzuia zisigusane */
-}
-/* Container inayozingira search bar */
-.search-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    padding: 0 20px;
-}
+.logo { font-size: 24px; font-weight: bold; color: var(--primary); }
+.logo span { color: white; }
 
 .search-box {
-    background: rgba(255, 255, 255, 0.1); /* Glass effect */
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 15px;
     display: flex;
     align-items: center;
-    padding: 8px 15px;
-    border-radius: 25px; /* Inafanya iwe na duara pembeni */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 100%;
-    max-width: 400px;
-    transition: 0.3s;
-}
-
-.search-box:focus-within {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: var(--primary-color); /* Rangi nyekundu ikiguswa */
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
-}
-
-.search-box i {
-    color: var(--text-gray);
-    margin-right: 10px;
-    font-size: 0.9rem;
 }
 
 .search-box input {
     background: transparent;
     border: none;
-    outline: none;
     color: white;
-    width: 100%;
-    font-size: 0.9rem;
+    outline: none;
+    padding: 5px;
 }
 
-.search-box input::placeholder {
-    color: var(--text-gray);
+/* Category Menu */
+nav ul { display: flex; list-style: none; gap: 20px; }
+nav ul li a { color: white; text-decoration: none; font-size: 14px; opacity: 0.7; transition: 0.3s; }
+nav ul li a.active, nav ul li a:hover { opacity: 1; color: var(--primary); }
+
+/* Movie Grid */
+.movie-section { padding: 20px 5%; }
+#movieGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
 }
 
-/* Kwenye simu, fanya search bar iwe chini ya logo */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .search-container {
-        width: 100%;
-        padding: 0;
-    }
-/* Muonekano wa Banner ya Juu */
-.hero-slide {
-    height: 450px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end;
-    padding: 40px;
+.movie-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
 }
 
-.hero-info h1 { font-size: 3rem; color: white; margin-bottom: 10px; }
+.movie-card:hover { transform: scale(1.05); }
 
-/* Muonekano wa Row za chini */
-.movie-row {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 20px 0;
-    scrollbar-width: none; /* Ficha scrollbar */
-}
- /* Hero Banner */
-.hero-slide {
-    height: 500px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end;
-    padding: 60px 40px;
-}
+.movie-card img { width: 100%; height: 230px; object-fit: cover; }
 
-.hero-content h1 { font-size: 3.5rem; color: white; margin-bottom: 10px; }
-.hero-btns { display: flex; gap: 15px; margin-top: 20px; }
+.card-info { padding: 10px; }
+.card-info h3 { font-size: 14px; margin: 5px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-.btn-watch { background: white; color: black; padding: 12px 25px; border-radius: 5px; font-weight: bold; text-decoration: none; }
-.btn-buy-full { background: #e50914; color: white; padding: 12px 25px; border-radius: 5px; font-weight: bold; text-decoration: none; }
+.card-buttons { display: flex; gap: 5px; margin-top: 10px; }
+.btn-watch { background: white; color: black; flex: 1; text-align: center; padding: 5px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold; }
+.btn-buy { background: #25D366; color: white; flex: 1; text-align: center; padding: 5px; border-radius: 5px; text-decoration: none; font-size: 12px; }
 
-/* Movie Row Slider */
-.movie-swiper { padding: 20px 0; overflow: hidden; }
-.swiper-button-next, .swiper-button-prev { color: #e50914 !important; scale: 0.7; }
-
-/* Responsive kwa Simu */
-@media (max-width: 768px) {
-    .hero-slide { height: 350px; padding: 30px 20px; }
-    .hero-content h1 { font-size: 2rem; }
-}
-    
+/* Player Page */
+.player-container { max-width: 900px; margin: 50px auto; padding: 20px; }
+.video-wrapper { width: 100%; background: black; border-radius: 10px; overflow: hidden; }
+video { width: 100%; }
